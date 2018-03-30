@@ -7,9 +7,16 @@ class PostsShow extends Component {
     this.props.fetchPost(this.props.params.id) //id from <Route path="posts/:id"...
   }
   render() {
+    const { post } = this.props
+
+    if (!post) {
+      return <div>Loading...</div>
+    }
     return (
       <div>
-        <h3>Current post {this.props.params.id}</h3>
+        <h3>{post.title}</h3>
+        <h5>{post.categories}</h5>
+        <p>{post.content}</p>
       </div>
     )
   }
