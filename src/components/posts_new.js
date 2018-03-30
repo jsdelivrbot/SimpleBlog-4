@@ -1,16 +1,28 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { reduxForm } from 'redux-form'
 import { createPost } from '../actions'
 import { Link } from 'react-router'
 
 class PostsNew extends Component {
+  //this.context only router
+  static contextTypes = {
+    router: PropTypes.object
+  }
+
+  onSubmit(form_props) {
+    this.props.createPost(form_props).then(() => {
+      //blog post has been created, navigate to the index
+      this.context.router.push('/')
+    })
+  }
+
   render() {
     const { fields: { title, categories, content }, handleSubmit } = this.props
     //const title = this.props.fields.title
     // FormProps={title} === {...title}
 
     return (
-      <form onSubmit={handleSubmit(this.props.createPost)}>
+      <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
         <h3>Create a new post</h3>
 
         <div
