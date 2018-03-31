@@ -12,6 +12,7 @@ class PostsIndex extends Component {
     return this.props.posts.map(post => {
       return (
         <li className="list-group-item" key={post.id}>
+          <input type="checkbox" className="form-check-input" />
           <Link to={`posts/${post.id}`}>
             <span className="pull-xs-right">{post.categories}</span>
             <strong>{post.title}</strong>
