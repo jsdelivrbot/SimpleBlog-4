@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import { FETCH_POSTS, FETCH_POST, CHECKED_POST } from '../actions'
 
 const INITIAL_STATE = { all: [], post: null, selected: [] }
@@ -12,7 +11,7 @@ export default function(state = INITIAL_STATE, action) {
 
     case CHECKED_POST:
       const { postId } = action.payload
-      if (!_.includes(state.selected, postId)) {
+      if (!state.selected.includes(postId)) {
         return { ...state, selected: [...state.selected, postId] }
       } else {
         const _selected = [...state.selected]
