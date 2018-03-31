@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchPosts, checkedPost } from '../actions'
 import { Link } from 'react-router'
+import SelectedPostList from './selected_posts_list'
 
 class PostsIndex extends Component {
   componentWillMount() {
@@ -38,6 +39,7 @@ class PostsIndex extends Component {
             Add a post
           </Link>
         </div>
+        <SelectedPostList />
         <h3>Posts</h3>
         <ul className="list-group">{this.renderPosts()}</ul>
       </div>
