@@ -4,6 +4,7 @@ import { fetchPosts, checkedPost } from '../actions'
 import { Link } from 'react-router'
 import SelectedPostList from './selected_posts_list'
 import _ from 'lodash'
+import AboutPro from './about_pro'
 
 class PostsIndex extends Component {
   componentWillMount() {
@@ -35,11 +36,15 @@ class PostsIndex extends Component {
   render() {
     return (
       <div>
+        <AboutPro />
+        <div />
+
         <div className="text-xs-right">
           <Link to="/posts/new" className="btn btn-primary">
             Add a post
           </Link>
         </div>
+
         <SelectedPostList />
         <h3>Posts</h3>
         <ul className="list-group">{this.renderPosts()}</ul>
