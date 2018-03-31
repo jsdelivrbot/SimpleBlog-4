@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { fetchPosts, checkedPost } from '../actions'
 import { Link } from 'react-router'
 import SelectedPostList from './selected_posts_list'
+import _ from 'lodash'
 
 class PostsIndex extends Component {
   componentWillMount() {
@@ -48,7 +49,7 @@ class PostsIndex extends Component {
 }
 
 function mapStateToProps(state) {
-  return { posts: state.posts.all }
+  return { posts: _.values(state.posts.all) }
 }
 
 export default connect(mapStateToProps, { fetchPosts, checkedPost })(PostsIndex)
