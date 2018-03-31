@@ -5,9 +5,9 @@ const postsSelector = state => state.posts.all
 const selectedPostsSelector = state => state.posts.selectedPostIds
 
 const getPosts = (posts, selectedPostIds) => {
-  const selectedPosts = _.values(posts).filter(post =>
-    selectedPostIds.includes(post.id)
-  )
+  const selectedPosts = selectedPostIds.map(id => {
+    return posts[id]
+  })
 
   return selectedPosts
 }
