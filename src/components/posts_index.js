@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchPosts } from '../actions'
+import { fetchPosts, checkedPost } from '../actions'
 import { Link } from 'react-router'
 
 class PostsIndex extends Component {
@@ -8,11 +8,19 @@ class PostsIndex extends Component {
     this.props.fetchPosts()
   }
 
+  onCheckPost(postId) {
+    this.props.checkedPost(postId)
+  }
+
   renderPosts() {
     return this.props.posts.map(post => {
       return (
         <li className="list-group-item" key={post.id}>
-          <input type="checkbox" className="form-check-input" />
+          <input
+            type="checkbox"
+            className="form-check-input"
+            onClick={this.onCheckPost.bind(this, post.id)}
+          />
           <Link to={`posts/${post.id}`}>
             <span className="pull-xs-right">{post.categories}</span>
             <strong>{post.title}</strong>
@@ -41,4 +49,4 @@ function mapStateToProps(state) {
   return { posts: state.posts.all }
 }
 
-export default connect(mapStateToProps, { fetchPosts })(PostsIndex)
+export default connect(mapStateToProps, { fetchPosts, checkedPost })(PostsIndex)

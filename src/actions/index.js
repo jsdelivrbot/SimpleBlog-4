@@ -5,6 +5,8 @@ export const CREATE_POST = 'CREATE_POST'
 export const FETCH_POST = 'FETCH_POST'
 export const DELETE_POST = 'DELETE_POST'
 
+export const CHECKED_POST = 'CHECKED_POST'
+
 const ROOT_URL = 'http://reduxblog.herokuapp.com/api'
 const API_KEY = '?key=123uniqdfhufshvheyruwyrl'
 
@@ -41,5 +43,12 @@ export function deletePost(id) {
   return {
     type: DELETE_POST,
     payload: request
+  }
+}
+
+export function checkedPost(id) {
+  return {
+    type: CHECKED_POST,
+    payload: { postId: id }
   }
 }
