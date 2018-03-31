@@ -1,6 +1,6 @@
 import { FETCH_POSTS, FETCH_POST, CHECKED_POST } from '../actions'
 
-const INITIAL_STATE = { all: [], post: null, selected: [] }
+const INITIAL_STATE = { all: [], post: null, selectedPostIds: [] }
 
 export default function(state = INITIAL_STATE, action) {
   switch (action.type) {
@@ -11,15 +11,15 @@ export default function(state = INITIAL_STATE, action) {
 
     case CHECKED_POST:
       const { postId } = action.payload
-      if (!state.selected.includes(postId)) {
-        return { ...state, selected: [...state.selected, postId] }
+      if (!state.selectedPostIds.includes(postId)) {
+        return { ...state, selectedPostIds: [...state.selectedPostIds, postId] }
       } else {
-        const _selected = [...state.selected]
+        const _selected = [...state.selectedPostIds]
         const _removed = _selected.splice(_selected.indexOf(postId), 1)
 
         return {
           ...state,
-          selected: _selected
+          selectedPostIds: _selected
         }
       }
   }
